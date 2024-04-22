@@ -1,0 +1,58 @@
+import random
+
+# Quiz questions and answers
+quiz_questions = {
+    "What is the capital of France?": "Paris",
+    "Who wrote 'Romeo and Juliet'?": "William Shakespeare",
+    "What is the chemical symbol for water?": "H2O",
+    "Who painted the Mona Lisa?": "Leonardo da Vinci",
+    "What is the tallest mountain in the world?": "Mount Everest"
+}
+
+# Function to display welcome message and rules
+def display_welcome():
+    print("Welcome to the Quiz Game!")
+    print("You will be asked multiple-choice or fill-in-the-blank questions on a specific topic.")
+    print("Choose the correct answer from the options provided or enter your answer for fill-in-the-blank questions.")
+    print("Let's get started!\n")
+
+# Function to present quiz questions
+def present_questions():
+    score = 0
+    for question, answer in quiz_questions.items():
+        print(question)
+        user_answer = input("Your answer: ").strip()
+        if user_answer.lower() == answer.lower():
+            print("Correct!")
+            score += 1
+        else:
+            print("Incorrect. The correct answer is:", answer)
+        print()
+    return score
+
+# Function to display final results
+def display_results(score):
+    print("Quiz completed!")
+    print("Your final score:", score, "/", len(quiz_questions))
+    if score == len(quiz_questions):
+        print("Congratulations! You got all questions correct.")
+    elif score >= len(quiz_questions) / 2:
+        print("Well done! You did a good job.")
+    else:
+        print("Keep practicing. You can do better next time.")
+
+# Function to play again
+def play_again():
+    return input("Do you want to play again? (yes/no): ").lower().startswith('y')
+
+# Main function
+def main():
+    display_welcome()
+    while True:
+        score = present_questions()
+        display_results(score)
+        if not play_again():
+            break
+
+if __name__ == "__main__":
+    main()
